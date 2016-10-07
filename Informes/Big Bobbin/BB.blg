@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: BB.aux
+The style file: plain.bst
+Database file #1: Bibliography.bib
+Warning--I didn't find a database entry for "wiki:tetra"
+Warning--I didn't find a database entry for "meyer1990method"
+You've used 16 entries,
+            2118 wiz_defined-function locations,
+            594 strings with 6128 characters,
+and the built_in function-call counts, 3855 in all, are:
+= -- 357
+> -- 152
+< -- 1
++ -- 63
+- -- 46
+* -- 197
+:= -- 649
+add.period$ -- 45
+call.type$ -- 16
+change.case$ -- 70
+chr.to.int$ -- 0
+cite$ -- 16
+duplicate$ -- 133
+empty$ -- 368
+format.name$ -- 46
+if$ -- 816
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 6
+newline$ -- 79
+num.names$ -- 32
+pop$ -- 119
+preamble$ -- 1
+purify$ -- 55
+quote$ -- 0
+skip$ -- 119
+stack$ -- 0
+substring$ -- 160
+swap$ -- 17
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 62
+warning$ -- 0
+while$ -- 37
+width$ -- 18
+write$ -- 158
+(There were 2 warnings)
