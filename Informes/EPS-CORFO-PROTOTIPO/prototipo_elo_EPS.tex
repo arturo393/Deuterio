@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Plantilla para un artculo en LaTeX en espaol.  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,twoside,onecolumn]{article}
+
+% Esto es para poder escribir acentos directamente:
+%\usepackage[latin1]{inputenc} 
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx} \usepackage{multirow} \usepackage{titlesec}
+\usepackage{sectsty} \usepackage{fncychap}
+
+%\usepackage{natbib}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+% Esto es para que el LaTeX sepa que el texto est en espaol: 
+\usepackage[spanish]{babel}
+\usepackage[right=3cm,left=3cm,top=2.5cm,bottom=2.5cm,headsep=1cm,footskip=2cm]{geometry}
+\usepackage{graphicx}
+% Paquetes de la AMS: 
+\usepackage{amsmath, amsthm, amsfonts}
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\usepackage{hyperref} 
+%\pagestyle{headings} 
+\pagestyle{myheadings}
+\markboth{Documentación Prototipo EPS}{}
+
+\begin{document} 
+\input{portada.tex} 
+%\newpage 
+%\tableofcontents
+%\listoffigures % to produce list of figures 
+%\listoftables % to producelist of tables 
+%\begin{abstract}
+%   abstract-text
+%\end{abstract}
+\newpage 
+\section{Alcance}
+Este documento da cuenta del trabajo realizado para el proyecto 15-COTE42665 en relación a la electrónica del prototipo.
+
+\section{Introducción}
+%% Explicación de lo que la electrónica hará para el protitpo EPS , dentro de lo que se dijo que iba a hacer.
+
+\section{Resultado 1 - Diseño Prototipo EPS (Abril)} %% Métrica: Diseño y  planos de construcción.
+%% Explicación con diagrama de lo que hace el circtuito y sus características más imporantantes (P máx, formas de onda, seguridad)
+%% Identifación de partes dentro del diagrama y sus eficiencias.
+
+\subsection{DC Link}
+%% Mostrar forma de onda y potencia de salida.
+%% Diagrama del circuito más anexo con PCB.
+
+\subsection{Disparo}
+%% Mostrar forma de onda y potencia de salida.
+%% Diagrama del circuito más anexo con PCB.
+
+\subsection{Sensores}
+%% Indicar sensores (el modelo en caso sea ), características de medición (raango de medición). 
+
+
+\section{Resultado 2 - Construcción EPS (Junio)} %% Métrica:Producto físico
+%% Imagen con el rack diseñado, ojalá construido y explicando sus partes. 
+
+\section{Resultado 3 - Puntos Óptimos de Operación EPS (Diciembre)} %% Métrcica frecuencia en Hz
+%% Consideraciónes de funcionamiento, ej: temperatura, corriente , Potencia , frecuencia , tiempo de funcionamiento y comportamiento en estas condiciones. 
+
+\newpage
+\bibliographystyle{plain}
+
+\bibliography{Bibliography}{}
+
+\end{document}
+
