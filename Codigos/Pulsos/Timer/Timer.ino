@@ -31,6 +31,7 @@ float currentValue;
 bool gate; //activate/desactivate pulse modulation
 bool signal_on; //activate/desactivate complete signal
 bool freq_on; // activate/desactivate frequency variator
+float freq_val; // frequecy value
 
 void setup(){
   
@@ -40,18 +41,7 @@ void setup(){
   signal_on = true;
   freq_on = false;
   
-  
-  /*
-  _CS22 _CS21 _CS20 
-   0      0    0      no clock
-   0      0    1      no prescaling
-   0      1    0      16 MHz / 8 
-   0      1    1      16 MHz / 32
-   1      0    0      16 MHz / 64
-   1      0    1      16 MHz / 128 
-   1      1    1      16 MHz / 256 
-   1      1    1      16 MHz / 1024
-  */ 
+
   
   pinMode(3, OUTPUT); // signal with variable duty cicle
   pinMode(11, OUTPUT);
@@ -93,6 +83,7 @@ ISR(TIMER1_COMPA_vect){//timer1 interrupt 1Hz toggles pin 13 (LED)
 ISR(TIMER2_COMPA_vect){//timer1 interrupt 8kHz toggles pin 9
 }
 
+
 // Variables will change :
 int pulseState = LOW;             // ledState used to set the LED
 // Generally, you should use "unsigned long" for variables that hold time
@@ -112,26 +103,28 @@ void loop(){
   // map it to the range of the analog out:
   outputValue0 = map(sensorValue0, 0, 1023, 30, 220);  
   outputValue1 = map(sensorValue1, 0, 1023, 0,4000 );  
-
-
-if(freq_on == true){
-  OCR2A = outputValue0; // Pulse frecuency
-  OCR2B = OCR2A*0.;   // Pulse duty clicle (50%)
-} else { // fixed value
-  OCR2A = 200;
-  OCR2B = OCR2A*0.3;
-}
+  
+  if(freq_on == true){
+    OCR2A = outputValue0; // Pulse frecuency
+    OCR2B = OCR2A*0.;   // Pulse duty clicle (50%)
+    } 
+    else { // fixed value
+      OCR2A = 200;
+      OCR2B = OCR2A*0.3;
+      }
+      
    interval = outputValue1;
   // check to see if it's time to blink the LED; that is, if the
   // difference between the current time and last time you blinked
   // the LED is bigger than the interval at which you want to
   // blink the LED.
   unsigned long currentMillis = millis();
+
   
   if(digitalRead(gatePin) == true){
     signal_on = true;
    TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
-  TCCR2B = _BV(WGM22) | _BV(CS20 );
+   TCCR2B = _BV(WGM22) | _BV(CS20 );
  // TCCR2B = _BV(WGM22) | _BV(CS21 );
  //  TCCR2B = _BV(WGM22) | _BV(CS21 ) | _BV(CS20);
  //  TCCR2B = _BV(WGM22) | _BV(CS22);
@@ -140,10 +133,23 @@ if(freq_on == true){
   }else{
     signal_on = false;
     TCCR2A = 0;
- 
   }
   
-  Serial.println(signal_on); 
+  /*
+  _CS22 _CS21 _CS20 
+   0      0    0      no clock
+   0      0    1      no prescaling
+   0      1    0      16 MHz / 8 
+   0      1    1      16 MHz / 32
+   1      0    0      16 MHz / 64
+   1      0    1      16 MHz / 128 
+   1      1    1      16 MHz / 256 
+   1      1    1      16 MHz / 1024
+  */ 
+  
+  freq_val= 1600000.0/(8*OCR2A+1);
+
+  Serial.println(freq_val); 
   
   if (gate == true) {
     if (currentMillis - previousMillis >= interval) {
