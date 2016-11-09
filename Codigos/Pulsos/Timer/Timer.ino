@@ -28,13 +28,17 @@ int incomingByte;
 int duty;
 float offset;
 float currentValue;
-bool gate;
+bool gate; //activate/desactivate pulse modulation
+bool signal_on; //activate/desactivate complete signal
+bool freq_on; // activate/desactivate frequency variator
 
 void setup(){
   
   // enable/disable low frecuency gate
   pinMode(gatePin, INPUT);
   gate = false;
+  signal_on = true;
+  freq_on = false;
   
   
   /*
@@ -51,13 +55,7 @@ void setup(){
   
   pinMode(3, OUTPUT);
   pinMode(11, OUTPUT);
-  TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
- // TCCR2B = _BV(WGM22) | _BV(CS20 );
- // TCCR2B = _BV(WGM22) | _BV(CS21 );
- //  TCCR2B = _BV(WGM22) | _BV(CS21 ) | _BV(CS20);
- //  TCCR2B = _BV(WGM22) | _BV(CS22);
-    TCCR2B = _BV(WGM22) | _BV(CS22)| _BV(CS20);
- //  TCCR2B = _BV(WGM22) | _BV(CS22) | _BV(CS21) | _BV(CS20); 
+
   
   OCR2A = 200;
   OCR2B = 200;
@@ -110,23 +108,38 @@ void loop(){
   outputValue0 = map(sensorValue0, 0, 1023, 30, 220);  
   outputValue1 = map(sensorValue1, 0, 1023, 0,4000 );  
 
+
+if(freq_on == true){
   OCR2A = outputValue0; // Pulse frecuency
-  OCR2B = OCR2A*0.5;   // Pulse duty clicle (50%)
-   
+  OCR2B = OCR2A*0.;   // Pulse duty clicle (50%)
+} else { // fixed value
+  OCR2A = 200;
+  OCR2B = OCR2A*0.3;
+}
    interval = outputValue1;
   // check to see if it's time to blink the LED; that is, if the
   // difference between the current time and last time you blinked
   // the LED is bigger than the interval at which you want to
   // blink the LED.
   unsigned long currentMillis = millis();
- /* 
+  
   if(digitalRead(gatePin) == true){
-    gate = true;
+    signal_on = true;
+   TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
+  TCCR2B = _BV(WGM22) | _BV(CS20 );
+ // TCCR2B = _BV(WGM22) | _BV(CS21 );
+ //  TCCR2B = _BV(WGM22) | _BV(CS21 ) | _BV(CS20);
+ //  TCCR2B = _BV(WGM22) | _BV(CS22);
+ //   TCCR2B = _BV(WGM22) | _BV(CS22)| _BV(CS20);
+ //  TCCR2B = _BV(WGM22) | _BV(CS22) | _BV(CS21) | _BV(CS20); 
   }else{
-    gate = false;
-    TCCR2A =  (1 << COM2A0) | (1 << COM2B1);
+    signal_on = false;
+    TCCR2A = 0;
+ 
   }
-  */
+  
+  Serial.println(signal_on);
+  
   if (gate == true) {
     if (currentMillis - previousMillis >= interval) {
       // save the last time you blinked the LED
@@ -141,12 +154,5 @@ void loop(){
       TCCR2A ^=  (1 << COM2A0) | (1 << COM2B1);
     }
   }
-  
-
-
-
-  
-  
-
-  
+    
 }
