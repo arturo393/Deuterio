@@ -62,7 +62,13 @@ void setup(){
   OCR2A = 200;
   OCR2B = 200;
   
+ /* On the Arduino Duemilanove, these values yield:
 
+    Output A frequency: 16 MHz / 64 / (180+1) / 2 = 690.6Hz
+    Output A duty cycle: 50%
+    Output B frequency: 16 MHz / 64 / (180+1) = 1381.2Hz
+    Output B duty cycle: (50+1) / (180+1) = 28.2% 
+*/
 // TIMER 0
 /* pinMode(6, OUTPUT);  // output A 
  pinMode(5, OUTPUT); // output B
