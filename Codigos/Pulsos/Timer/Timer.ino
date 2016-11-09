@@ -53,13 +53,9 @@ void setup(){
    1      1    1      16 MHz / 1024
   */ 
   
-  pinMode(3, OUTPUT);
+  pinMode(3, OUTPUT); // signal with variable duty cicle
   pinMode(11, OUTPUT);
 
-  
-  OCR2A = 200;
-  OCR2B = 200;
-  
 
 // TIMER 0
 /* pinMode(6, OUTPUT);  // output A 
@@ -138,7 +134,7 @@ if(freq_on == true){
  
   }
   
-  Serial.println(signal_on);
+  Serial.println(signal_on); 
   
   if (gate == true) {
     if (currentMillis - previousMillis >= interval) {
