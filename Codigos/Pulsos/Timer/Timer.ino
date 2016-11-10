@@ -32,6 +32,8 @@ bool gate; //activate/desactivate pulse modulation
 bool signal_on; //activate/desactivate complete signal
 bool freq_on; // activate/desactivate frequency variator
 float freq_val; // frequecy value
+int preescaler;
+int temp;
 
 void setup(){
   
@@ -104,38 +106,7 @@ void loop(){
   outputValue0 = map(sensorValue0, 0, 1023, 30, 220);  
   outputValue1 = map(sensorValue1, 0, 1023, 0,4000 );  
   
-  if(freq_on == true){
-    OCR2A = outputValue0; // Pulse frecuency
-    OCR2B = OCR2A*0.;   // Pulse duty clicle (50%)
-    } 
-    else { // fixed value
-      OCR2A = 200;
-      OCR2B = OCR2A*0.3;
-      }
-      
-   interval = outputValue1;
-  // check to see if it's time to blink the LED; that is, if the
-  // difference between the current time and last time you blinked
-  // the LED is bigger than the interval at which you want to
-  // blink the LED.
-  unsigned long currentMillis = millis();
-
-  
-  if(digitalRead(gatePin) == true){
-    signal_on = true;
-   TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
-   TCCR2B = _BV(WGM22) | _BV(CS20 );
- // TCCR2B = _BV(WGM22) | _BV(CS21 );
- //  TCCR2B = _BV(WGM22) | _BV(CS21 ) | _BV(CS20);
- //  TCCR2B = _BV(WGM22) | _BV(CS22);
- //   TCCR2B = _BV(WGM22) | _BV(CS22)| _BV(CS20);
- //  TCCR2B = _BV(WGM22) | _BV(CS22) | _BV(CS21) | _BV(CS20); 
-  }else{
-    signal_on = false;
-    TCCR2A = 0;
-  }
-  
-  /*
+    /* Preescaler value
   _CS22 _CS21 _CS20 
    0      0    0      no clock
    0      0    1      no prescaling
@@ -147,9 +118,72 @@ void loop(){
    1      1    1      16 MHz / 1024
   */ 
   
-  freq_val= 1600000.0/(8*OCR2A+1);
+    if(digitalRead(gatePin) == true){
+    signal_on = true;
+   TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
+   
+  
+   preescaler = 1; // 1 - 8 - 32 - 64 - 128 - 256
+   
+   if (preescaler == 1 ) /* 8 [MHz] Khz - 62.7 [KHz] */
+   TCCR2B = _BV(WGM22) | _BV(CS20); /
 
-  Serial.println(freq_val); 
+  if (preescaler == 8 ) /* 182.7 [KHz] - 2.56 [KHz] */
+  TCCR2B = _BV(WGM22) | _BV(CS21 ); 
+ 
+  if (preescaler == 32 ) /* 250 Khz - 1.92 [KHz] */
+  TCCR2B = _BV(WGM22) | _BV(CS21 ) | _BV(CS20);
+
+  if (preescaler == 64 ) /* 125 [KHz]- 980 [Hz] */
+  TCCR2B = _BV(WGM22) | _BV(CS22);
+
+  if (preescaler == 128 ) /*  62.5[KHz] - 490 [Hz]*/
+  TCCR2B = _BV(WGM22) | _BV(CS22)| _BV(CS20);
+ 
+  if (preescaler == 256 ) /*  7[KHz] - 61.2 [Hz]*/
+  TCCR2B = _BV(WGM22) | _BV(CS22) | _BV(CS21) | _BV(CS20); 
+
+   
+}else{
+    signal_on = false;
+    TCCR2A = 0;
+  }
+  
+  /////////////////////////////////////////////////////////////////
+  // Ajsute de frecuencua y ciclo de trabajo //////////////////////
+  /////////////////////////////////////////////////////////////////
+  if(freq_on == true){
+    OCR2A = outputValue0; // Pulse frecuency
+    OCR2B = OCR2A*0.;   // Pulse duty clicle (50%)
+    } 
+    else { // fixed value
+      /* Frencuency Set */
+      freq_val = 10000000000;
+      temp = (16000000.0/freq_val-1)/preescaler;
+      
+      if(temp >=256 ) // out of range
+      OCR2A = 254;
+      else if (temp <= 0) // out of range
+      OCR2A = 1;
+      else 
+      OCR2A = temp;
+      
+      /* Duty Cicle */
+      OCR2B = OCR2A*0.5;
+      }
+  /////////////////////////////////////////////////////////////////    
+   interval = outputValue1;
+  // check to see if it's time to blink the LED; that is, if the
+  // difference between the current time and last time you blinked
+  // the LED is bigger than the interval at which you want to
+  // blink the LED.
+  unsigned long currentMillis = millis();
+
+//  freq_val= 1600000.0/(8*OCR2A+1);
+  Serial.print(OCR2A);
+  Serial.print("\t");
+  Serial.print(freq_val);
+  Serial.println("[hz]");
   
   if (gate == true) {
     if (currentMillis - previousMillis >= interval) {
