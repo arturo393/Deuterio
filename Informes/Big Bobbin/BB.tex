@@ -161,16 +161,40 @@ En su m\'etodo~\cite{brown1977welding} propone una electrólisis en una celda el
 \subsection{La nueva propuesta}
 
 De que se trata , que es lo diferente
+Juntando las partes
 
 \subsubsection{Fundamento teórico o experimental o esoterico}
 Explicación de funcionamiento
 mmas tecnico con ecuencaciones y eficiencias esperadas, diagramas
 
+\subsubsection{Análisis de la Respuesta Transitoria}
+Se configura la señal de entrada de prueba y se compara la respuesta del sistama. Las señales de prueba son: escalón, rampa, parábola, impulso, senoidales, etc.  La forma de la señal prueba dependera de funcionamiento normal de sistema a estudiar, en el caso de la celda se tudiará el comportamiento a un escalón porque  el funcionamiento normal es a Voltaje DC. 
+
+Una de las características importantes del sistema a estudiar es la estabilidad del mismo, es es decir, si es estable o no.
+
+Tomando en considearción el estudio~\cite{mazloomi2013analysis}, se prueba como modelo un sistema de segundo orden. La función de transferencia está dado por~\ref{eq:segundoorden}
+
+\begin{equation} \label{eq:segundoroden}
+\frac{C(s)}{R(s) }= \frac{\omega_{n}^2}{s^2+2\psi\omega_ns+\omega_n^2}
+\end{equation}
+
+Para el análsis del sistema de segundo orden se definen las siguientes variables que se muestran en la figura~\ref{fig:2orden}:
+\paragraph{Tiempo  de  retardo,  td} Es el tiempo de retardo es el tiempo requerido para  que la respuesta  alcance la primera vez la mitad del valor final.  
+\paragraph{Tiempo de levantamiento, tr} : Es el tiempo requerido  para que la respuesta pase del 10 al 90\%, del 5 al 95\% o del 0 al 100\% de su valor final.
+\paragraph{Tiempo pico, tp} 
+
+\begin{figure}
+  \centering
+   \includegraphics[width=0.7\textwidth]{figures/2orden}
+  \caption{Especificaciones de la respuesta transitoria}
+  \label{fig:2orden}
+\end{figure}
+
 \subsubsection{Eficiencia Electrónica}
 \subsubsection{Eficiencia Química}
 
 \paragraph{Modos vibracionales}
-
+Estudiar e investgar
 
 \section{Desarrollo}
 
