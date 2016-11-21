@@ -169,19 +169,37 @@ mmas tecnico con ecuencaciones y eficiencias esperadas, diagramas
 
 \subsubsection{Análisis de la Respuesta Transitoria}
 Se configura la señal de entrada de prueba y se compara la respuesta del sistama. Las señales de prueba son: escalón, rampa, parábola, impulso, senoidales, etc.  La forma de la señal prueba dependera de funcionamiento normal de sistema a estudiar, en el caso de la celda se tudiará el comportamiento a un escalón porque  el funcionamiento normal es a Voltaje DC. 
+%% FAlTA DEFINIR EL SISTEMA
 
 Una de las características importantes del sistema a estudiar es la estabilidad del mismo, es es decir, si es estable o no.
 
-Tomando en considearción el estudio~\cite{mazloomi2013analysis}, se prueba como modelo un sistema de segundo orden. La función de transferencia está dado por~\ref{eq:segundoorden}
+Tomando en consideración la respuesta a escalón del sistema como se muestra en la figura~\ref{fig:resescalon}, se prueba como modelo un sistema de segundo orden. 
+%\begin{figure}
+%  \centering
+%   \includegraphics[width=0.7\textwidth]{figures/resescalon}
+%  \caption{Respuesta a escalón del sistema}
+%  \label{fig:rescalon}
+%\end{figure}
+
+Para el análsis del sistema de segundo orden se definen las siguientes variables que se muestran en la figura~\ref{fig:2orden} según~\cite{dasdas}:nivel inicial de entrada $u_0$, nivel final de entrada $u_f$, nivel inicial de salida $y_0$, nivel final de salida $y_f$, amplitud de un pico arbitrario $A_1$, amplitud del pico número $n$ $A_n$ y tiempo entre dos picos sucesivos $T_\omega$. Con estos datos según la figura~\ref{fig:2orsub}, se calcula:
 
 \begin{equation} \label{eq:segundoroden}
-\frac{C(s)}{R(s) }= \frac{\omega_{n}^2}{s^2+2\psi\omega_ns+\omega_n^2}
+\xi = \frac{ \frac{1}{n-1}log(A_1/A_n)}{\sqrt{4\pi^2+(\frac{1}{n-1}log(A_1/A_n)})^2}
 \end{equation}
 
-Para el análsis del sistema de segundo orden se definen las siguientes variables que se muestran en la figura~\ref{fig:2orden}:
-\paragraph{Tiempo  de  retardo,  td} Es el tiempo de retardo es el tiempo requerido para  que la respuesta  alcance la primera vez la mitad del valor final.  
-\paragraph{Tiempo de levantamiento, tr} : Es el tiempo requerido  para que la respuesta pase del 10 al 90\%, del 5 al 95\% o del 0 al 100\% de su valor final.
-\paragraph{Tiempo pico, tp} 
+\begin{equation} \label{eq:segundoroden}
+T_n = \frac{ T_\omega}{2\pi}\sqrt{1-\xi^2}
+\end{equation}
+
+\begin{equation} \label{eq:segundoroden}
+K = \frac{y_f-y_0}{u_f-u_0}
+\end{equation}
+
+
+\begin{equation} \label{eq:segundoroden}
+\frac{C(s)}{R(s) }= \frac{K}{{T_\omega}^2s^2+2{T_\omega}{\xi}s+1}
+\end{equation}
+
 
 \begin{figure}
   \centering
@@ -235,4 +253,3 @@ Un dielectrico debilita el campo eléctrico entre placas de un condesador porque
 %\end{thebibliography} 
 
 \end{document}
-
