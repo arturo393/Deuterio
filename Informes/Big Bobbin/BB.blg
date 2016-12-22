@@ -3,11 +3,17 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: BB.aux
 The style file: plain.bst
 Database file #1: Bibliography.bib
+I was expecting a `,' or a `}'---line 9 of file Bibliography.bib
+ : 
+ : @article{bockris2007estimates,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "wiki:tetra"
 Warning--I didn't find a database entry for "meyer1990method"
+Warning--I didn't find a database entry for "dasdas"
 You've used 16 entries,
             2118 wiz_defined-function locations,
-            594 strings with 6128 characters,
+            595 strings with 6134 characters,
 and the built_in function-call counts, 3855 in all, are:
 = -- 357
 > -- 152
@@ -46,4 +52,4 @@ warning$ -- 0
 while$ -- 37
 width$ -- 18
 write$ -- 158
-(There were 2 warnings)
+(There was 1 error message)

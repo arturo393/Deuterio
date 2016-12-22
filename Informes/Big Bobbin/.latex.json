@@ -1,0 +1,11 @@
+{
+  "projectPath": "/home/arturo/Deuterio/Informes/Big Bobbin",
+  "title": "LaTeX-Plus Project",
+  "root": "BB.tex",
+  "program": "pdflatex",
+  "latexmkOptions": "-bibtex -pdf -shell-escape",
+  "output": ".latex",
+  "openOutput": "true",
+  "postAction": "link",
+  "postPath": ""
+}

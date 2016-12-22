@@ -38,12 +38,14 @@
 %\end{abstract}
 \newpage 
 \section{Alcance}
-Este documento es un intento de entregar el fundamento teórico del funcionamiento de la electr\'olisis no convecional que pretende usar procesos no faradicos para la producci\'on eficiente de gas de kross para la combusti\'on o bien para almacenamiento. Esto con el objetivo de sentar las bases tanto del dise\~no de un circuito electrónico para actuaci\'on como el de la celda que contendrá el agua a separar, de ahora en adelante llamado Camara.
+Este documento es un intento de entregar el fundamento teórico del funcionamiento de la electr\'olisis no convecional que pretende usar procesos no faradicos para la producci\'on eficiente de gas de kross para la combusti\'on o bien para almacenamiento. Esto para sentar las bases del dise\~no de un circuito de amplificaci\'on del Voltaje de actuaci\'on a una celda electrol\'itica.
 
 \section{Introducción}
 De acuerdo con la primera ley de faraday de la electrolisis~\cite{1954JChEd}, sabemos que \textit{La tasa de flujo de masa de gas es proporcional a la densidad de corriente}. En otras palabras: \textit{La masa de una sustancia producida en un electrodo durante la electrólisis es proporcional al número de moles de electrones (la cantidad de electricidad) transferido en ese electrodo}. Por lo tanto, el objetivo de un proceso de electrólisis de agua eficiente es alcanzar niveles más altos de corriente mientras se aplica el voltaje mínimo posible de la celda~\cite{kavehinvestiagtion}. La eficiencia de los generadores de hidrógeno modernos se mide por la energía consumida por unidad de volumen estándar de hidrógeno ($\frac{MJ}{m^3}$), suponiendo que la temperatura y la presión del hidrógeno estándar~\cite{h2vol}. Como dato, se han reportado eficiencias de trabajo para celdas alkalinas en 1996 en el rango de 50-60\% para pequeños electrolizadores y alrededor de 65-70\% en grandes plantas~\cite{eff}.\\
 
 Existen investigaciones que plantean que el proceso de electrolisis no depende de energía. Según la teoría de Arrhenius, las moléculas dentro de una solución se disocian en iones y estos iones son recogidos en el electrodo\cite{dublin}, donde la energía de separación proviene del proceso de auto-ionización del agua. La mayoría de las investigaciones asumen que la energía calórica liberada en la combustión del resultado de la electrolisis procede de la combustión del hidrógeno pero cuando el gas utilizado es la combinación de hidrógeno y oxígeno producto de la electrolisis, la energía liberada tiene propiedades diferentesa las del hidrógeno. Sin embargo, se propone la hipótesis de que la energía dominante no proviene del gas hidrógeno, sino que proviene de grupos cargados de gas de agua, que activan coherente-mente la energía de punto cero.\cite{king2011water}
+
+
 
 \section{Electrólisis del agua}
 En la electrólisis, una corriente eléctrica DC se pasa a través de una sustancia conductora  (electrolito) con el fin producir una reacción no espontánea. Las semi-reacciones de interés es la descomposición del agua en hidrógeno y oxígeno~ presentadas en la ecuación~\eqref{reac:cat}~y~\eqref{reac:and} respectivamente; esta reacción es endotérmica, lo que requiere un aporte de energía. A todos los efectos practico, el agua pura no conduce la electricidad, por lo que se añade un electrolito para facilitar la reacción, usualmente se usa hidróxido de potasio. La figura~\ref{fig:electrolisis} se presenta la forma más simple de electrolisis del agua.
@@ -141,8 +143,7 @@ En su m\'etodo~\cite{brown1977welding} propone una electrólisis en una celda el
  
 \subsubsection{Genrador de señales}
 
-\subsection{Tay-Hee Han~\cite{han1984water}}
-Se propone un metodo para la decomposiciónd e agua en oxigeno e hidrógeno por ele efectro de inonización(qué es la ionización) por colisión. El agua se contiene dentro de un cámara con constante dielectrica mayor a la del agua, luego está cámara es sometida a un campo electrico que provoque la ruputura de los enlaces covalentes del agua liquida. El agua se descompone mientras que la cámara se mantiene estable.
+\subsection{Tay-Hee Han US4427512~\cite{han1984water}}
 
 
 
@@ -163,35 +164,8 @@ De que se trata , que es lo diferente
 Juntando las partes
 
 \subsubsection{Fundamento teórico o experimental o esoterico}
-%Explicación de funcionamiento
-%mmas tecnico con ecuencaciones y eficiencias esperadas, diagramas
-Se trabaja en el modelo electroquimico y se estudia las geometrías moleculares existentes. Se entiende los mecanismos de las coordenadas de reacción (difusión, convección y migración). Al situar un campo electréctico la geometría molecular es desconocidoa( averiguar). Se analiza las corrientes de electrólisis: orden y desorden. La electrólisis convencional propone a través de sus optimizaciónes mejorar el proceso de migración el cual es el que mayor ocurrencia tiene y el cual conlleva a ordenar, de cierta forma, el sistema en cuestión. En base a todo este esoterismo se propone una relación para  determinar el campo eléctrico necesario para llevar a la molécula de agua a un estado energético que se separe en hidrógeno y oxígeno. Según la primera ley de la termodinámica se tiene que:
-\begin{equation}
-\triangle U = q + w
-\end{equation}
-donde $\triangle U$ es el cambio interno de energía de un sistema, en este caso la celda de electrólisis, $q$ es el calor absorbido por el sistema, y $w$ es el trabajo hecho en el sistema. En un sistema electoquímico en donde hay cargas eléctricas moviendose a través de una diferencia de potencia, se tiene que:
-\begin{equation}
-\triangle U = q + w_{mec} + w_{elec}
-\end{equation}
-donde $w_{mec} = - P\triangle V$, $q = T\triangle S$ a temperatura y presión constante la entalpía y la energía libre de gibss es
-\begin{equation}
-\triangle H_p = \triangle_U + P \triangle V
-\end{equation}
-
-\begin{equation}
-\triangle G = \triangle H - T\triangle S
-\end{equation}
-por lo tanto se obtiene que 
-\begin{equation}
-\triangle G = w_{elec}
-\end{equation}
-
-Lo que se propone que el trabajo eléctrico sea:
-\begin{equation}
-w_{elect} = \frac{1}{2}CV^2
-\end{equation}
-donde $C$ es la capacitancia con dielectrico el agua y $V$ el voletaje del capacitor.
-
+Explicación de funcionamiento
+mmas tecnico con ecuencaciones y eficiencias esperadas, diagramas
 
 \subsubsection{Análisis de la Respuesta Transitoria}
 Se configura la señal de entrada de prueba y se compara la respuesta del sistama. Las señales de prueba son: escalón, rampa, parábola, impulso, senoidales, etc.  La forma de la señal prueba dependera de funcionamiento normal de sistema a estudiar, en el caso de la celda se tudiará el comportamiento a un escalón porque  el funcionamiento normal es a Voltaje DC. 
@@ -210,11 +184,11 @@ Tomando en consideración la respuesta a escalón del sistema como se muestra en
 Para el análsis del sistema de segundo orden se definen las siguientes variables que se muestran en la figura~\ref{fig:2orden} según~\cite{dasdas}:nivel inicial de entrada $u_0$, nivel final de entrada $u_f$, nivel inicial de salida $y_0$, nivel final de salida $y_f$, amplitud de un pico arbitrario $A_1$, amplitud del pico número $n$ $A_n$ y tiempo entre dos picos sucesivos $T_\omega$. Con estos datos según la figura~\ref{fig:2orsub}, se calcula:
 
 \begin{equation} \label{eq:segundoroden}
-\xi = \frac{ \frac{1}{n-1}log(A_1/A_n)}{\sqrt{4\pi^2+(\frac{1}{n-1}log(A_1/A_n)})^2}
+\psi = \frac{ \frac{1}{n-1}log(A_1/A_n)}{\sqrt{4\pi^2+(\frac{1}{n-1}log(A_1/A_n)})^2}
 \end{equation}
 
 \begin{equation} \label{eq:segundoroden}
-T_n = \frac{ T_\omega}{2\pi}\sqrt{1-\xi^2}
+T_n = \frac{ T_\omega}{2\pi}\sqrt{1-\psi^2}
 \end{equation}
 
 \begin{equation} \label{eq:segundoroden}
@@ -223,7 +197,7 @@ K = \frac{y_f-y_0}{u_f-u_0}
 
 
 \begin{equation} \label{eq:segundoroden}
-\frac{C(s)}{R(s) }= \frac{K}{{T_\omega}^2s^2+2{T_\omega}{\xi}s+1}
+\frac{C(s)}{R(s) }= \frac{K}{{T_\omega}^2s^2+2{T_\omega}s+1}
 \end{equation}
 
 
@@ -279,3 +253,4 @@ Un dielectrico debilita el campo eléctrico entre placas de un condesador porque
 %\end{thebibliography} 
 
 \end{document}
+
