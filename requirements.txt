@@ -1,0 +1,15 @@
+# Dependencias principales para análisis matemático y visualización
+numpy>=1.20.0
+matplotlib>=3.5.0
+scipy>=1.7.0
+
+# Dependencias adicionales recomendadas para desarrollo
+# pip install -r requirements.txt
+
+# Nota: Para compilar documentación LaTeX se requiere:
+# - LaTeX distribution (TeX Live, MiKTeX, etc.)
+# - Paquetes LaTeX específicos mencionados en archivos .tex
+
+# Para desarrollo con Arduino se requiere:
+# - Arduino IDE o Arduino CLI
+# - Librerías específicas según el código (ej: MAX6675 library)
