@@ -19,6 +19,6 @@ Psw=0.5*Vin*Iout*(tr+tf)*Fsw; #Disipación de energía por switching
 
 
 
-print "Potencia Continua",Pc,"[W]" 
-print "Potencia Switching",Psw,"[W]" 
-print "Potencia Total",Pc+Psw,"[W]" 
+print(f"Potencia Continua: {Pc:.3f} [W]")
+print(f"Potencia Switching: {Psw:.3f} [W]")
+print(f"Potencia Total: {Pc+Psw:.3f} [W]") 
