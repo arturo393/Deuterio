@@ -16,14 +16,14 @@ Tw = (1635-1632)*1e-3; # Tiempo entre dos picos sucesivos [s]
 n = 3 ;   # numero del segundo pico
 
 tmp = 1/(n-1)*np.log(A1/An)
-psi = tmp/np.square(4*np.pi**2 + tmp**2)
-Tn = (Tw/2*np.pi)*np.square(1-psi**2)
+psi = tmp/np.sqrt(4*np.pi**2 + tmp**2)  # Fixed: was np.square, should be np.sqrt
+Tn = (Tw/(2*np.pi))*np.sqrt(1-psi**2)  # Fixed: was np.square, should be np.sqrt
 K = (yf-y0)/(uf-u0)
 Wn = 1/Tn;
 
-print 'Factor de amortiguamiento psi=',psi
-print "Frecuencia natural Wn=",Wn*1e-6, "[MHz]"
-print "Ganancia K=", K
+print(f'Factor de amortiguamiento psi = {psi:.6f}')
+print(f"Frecuencia natural Wn = {Wn*1e-6:.3f} [MHz]")
+print(f"Ganancia K = {K:.4f}")
 
 sys2 = signal.TransferFunction(K, [Tn**2, 2*psi*Tn, 1]) # H(s) = (s + 2) / (s ** 2 + 6 * s + 25)
 
